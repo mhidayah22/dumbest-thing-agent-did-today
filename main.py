@@ -32,6 +32,9 @@ def main():
     if len(LINE) > 200:
         print("entry line is over 200 characters", file=sys.stderr)
         return 1
+    if "\n" in LINE or "\r" in LINE:
+        print("entry line must be a single line", file=sys.stderr)
+        return 1
     dest = destination()
     parent = os.path.dirname(os.path.abspath(dest))
     os.makedirs(parent, exist_ok=True)
